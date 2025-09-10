@@ -51,7 +51,7 @@ A valid OAuth 2.0 token generated from Google OAuth Playground
 `npx playwright install`
 
 ## 📧 Generate Gmail API Token using OAuth 2.0 Playground
-- Visit OAuth 2.0 Playground
+- [Visit OAuth 2.0 Playground](https://developers.google.com/oauthplayground)
 - On the left side, scroll down or search Gmail API v1
 
 - Check ✅ https://www.googleapis.com/auth/gmail.readonly
