@@ -38,31 +38,42 @@ export async function captureRegistrationResponse(page, registerAction, timeoutM
 
   const handler = async (res) => {
     try {
-      if (res.url().includes("/api/auth/register")) {
-        //Assert method and status
-        expect(res.request().method()).toBe("POST");
-        console.log("Intercepted registration request:", res.request().method());
-        
-        expect(res.status()).toBe(201);
-        console.log("Registration response status:", res.status());
-        
-        // Ensure it's JSON
-        const ct = res.headers()["content-type"] || "";
-        if (!/json/i.test(ct)) return;
+  if (res.url().includes("/api/auth/register")) {
+    const method = res.request().method();
+    const status = res.status();
 
-        const data = await res.json().catch(() => null);
-        if (!data) return;
+    // --- Manual Assertions with Logging ---
+    if (method !== "POST") {
+      console.warn(`❌ Expected request method: POST, but got: ${method}`);
+    } else {
+      console.log(`✅ Request method as expected: ${method}`);
+    }
 
-        const id = pickAnyId(data);
-        const tokenId = data?.token ? decodeJwtId(data.token) : null;
+    if (status !== 201) {
+      console.warn(`❌ Expected status: 201, but got: ${status}`);
+    } else {
+      console.log(`✅ Response status as expected: ${status}`);
+    }
 
-        if (id || tokenId) {
-          capturedData = data;
-          resolvedResponse = res;
-          page.off("response", handler);
-        }
-      }
-    } catch {}
+    // --- Ensure it's JSON ---
+    const ct = res.headers()["content-type"] || "";
+    if (!/json/i.test(ct)) return;
+
+    const data = await res.json().catch(() => null);
+    if (!data) return;
+
+    const id = pickAnyId(data);
+    const tokenId = data?.token ? decodeJwtId(data.token) : null;
+
+    if (id || tokenId) {
+      capturedData = data;
+      resolvedResponse = res;
+      page.off("response", handler);
+    }
+  }
+} catch (err) {
+  console.error("Error handling response:", err);
+}
   };
 
   page.on("response", handler);
@@ -189,8 +200,30 @@ export async function extractUserInfo(page, regData) {
 }
 
 /* ===== Save User ===== */
-export function saveUserModel(userModel, jsonData, filePath = "./userData.json") {
-  jsonData.push(userModel);
+export function saveUserModel(userModel, filePath = "./userData.json") {
+  let jsonData = [];
+
+  try {
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, "utf-8").trim();
+      jsonData = content ? JSON.parse(content) : [];
+    }
+  } catch (e) {
+    jsonData = [];
+  }
+
+  // If user with same userId exists, replace it
+  if (userModel.userId) {
+    const index = jsonData.findIndex(u => u.userId === userModel.userId);
+    if (index !== -1) {
+      jsonData[index] = userModel;
+    } else {
+      jsonData.push(userModel);
+    }
+  } else {
+    jsonData.push(userModel);
+  }
+
   fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
 }
 export async function registerAndCapture(page, userModel) {

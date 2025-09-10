@@ -13,7 +13,7 @@ test("User Registration End-to-End Flow", async ({ page, request }) => {
   const userModel = generateRandomUser();
 
   // Step 3: Register the user & capture User ID
-  const registeredUser = await registerUserFlow(page, userModel);
+  await registerUserFlow(page, userModel);
 
   // Step 4: Verify confirmation email
   await verifyRegistrationEmail(request);
