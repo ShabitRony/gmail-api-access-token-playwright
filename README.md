@@ -79,16 +79,19 @@ GMAIL-API-TOKEN-ACCESS/
 │── 📂 flow                   # High-level test flows
 │   └── registrationFlow.js
 │
+
 │── 📂 pages                  # Page Object classes
 │   ├── RegistrationPage.js
 │   ├── ResetPasswordPage.js
 │   └── DeleteUserPage.js
 │
+
 │── 📂 tests                  # Test cases (spec files)
 │   ├── registration.spec.js
 │   ├── resetPassword.spec.js
 │   └── deleteUser.spec.js
 │
+
 │── 📂 utils                  # Utility/helper functions
 │   ├── gmailUtils.js
 │   ├── userUtils.js
@@ -96,6 +99,7 @@ GMAIL-API-TOKEN-ACCESS/
 │   ├── generateRandomUser.js
 │   └── registrationHelper.js
 │
+
 └── userData.json             # Store Test data
 
 
