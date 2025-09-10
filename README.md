@@ -76,6 +76,7 @@ A valid OAuth 2.0 token generated from Google OAuth Playground
 
 ## 📂 Fonlder Structure
 GMAIL-API-TOKEN-ACCESS/
+
 │── 📂 flow                   # High-level test flows
 │   └── registrationFlow.js
 │
