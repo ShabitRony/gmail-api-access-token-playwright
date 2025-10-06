@@ -51,7 +51,7 @@ A valid OAuth 2.0 token generated from Google OAuth Playground
 `npx playwright install`
 
 ## 📧 Generate Gmail API Token using OAuth 2.0 Playground
-- Visit OAuth 2.0 Playground
+- [Visit OAuth 2.0 Playground](https://developers.google.com/oauthplayground)
 - On the left side, scroll down or search Gmail API v1
 
 - Check ✅ https://www.googleapis.com/auth/gmail.readonly
@@ -66,26 +66,33 @@ A valid OAuth 2.0 token generated from Google OAuth Playground
 
 - Create a .env file in the project root and add:
 
-`GMAIL_API_URL=https://gmail.googleapis.com/gmail/v1/users/me/messages`
-`GMAIL_API_TOKEN=<your-oauth2-token>`
-`APP_BASE_URL=<your-application-url>`
-`DELETE_USER_API=<delete-user-api-endpoint>`
+```GMAIL_API_URL=https://gmail.googleapis.com/gmail/v1/users/me/messages```
+
+```GMAIL_API_TOKEN=<your-oauth2-token>```
+
+```APP_BASE_URL=<your-application-url>```
+
+```DELETE_USER_API=<delete-user-api-endpoint>```
 
 ## 📂 Fonlder Structure
 GMAIL-API-TOKEN-ACCESS/
+
 │── 📂 flow                   # High-level test flows
 │   └── registrationFlow.js
 │
+
 │── 📂 pages                  # Page Object classes
 │   ├── RegistrationPage.js
 │   ├── ResetPasswordPage.js
 │   └── DeleteUserPage.js
 │
+
 │── 📂 tests                  # Test cases (spec files)
 │   ├── registration.spec.js
 │   ├── resetPassword.spec.js
 │   └── deleteUser.spec.js
 │
+
 │── 📂 utils                  # Utility/helper functions
 │   ├── gmailUtils.js
 │   ├── userUtils.js
@@ -93,6 +100,7 @@ GMAIL-API-TOKEN-ACCESS/
 │   ├── generateRandomUser.js
 │   └── registrationHelper.js
 │
+
 └── userData.json             # Store Test data
 
 
