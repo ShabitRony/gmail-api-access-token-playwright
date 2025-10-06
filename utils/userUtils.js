@@ -12,6 +12,8 @@ export function updateLatestUserPassword(newPassword) {
     const users = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
     users[users.length - 1].password = newPassword;
     fs.writeFileSync(filePath, JSON.stringify(users, null, 2), 'utf-8');
+    console.log("🔑 Password updated in local file.");
+    
 }
 export function getLatestUserId() {
     const latestUser = getLatestUser();
@@ -26,7 +28,7 @@ export function removeLatestUserFromFile() {
     if (users.length > 0) {
         users.pop(); // Remove last user
         fs.writeFileSync(filePath, JSON.stringify(users, null, 2), 'utf-8');
-        console.log("🗑️ Latest user removed from local file.");
+        console.log("Latest user removed from local file.");
     } else {
         console.warn("⚠️ No users found in file to remove.");
     }

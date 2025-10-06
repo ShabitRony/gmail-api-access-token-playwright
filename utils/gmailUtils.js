@@ -93,3 +93,34 @@ export async function assertLatestEmailSubject(request, expectedSubject) {
 
   throw new Error(`Email with subject containing "${expectedSubject}" not received within ${timeoutMs / 1000}s`);
 }
+
+/**
+ * Fetch the reset password link from Gmail and assert email subject.
+ * @param {import('@playwright/test').APIRequestContext} request
+ * @param {string} expectedSubject - e.g., "Password Reset Request"
+ * @returns {Promise<string>} reset link
+ */
+export async function getResetPasswordLink(request, expectedSubject) {
+  const timeoutMs = 30000; // 30s
+  const intervalMs = 2000;
+  const start = Date.now();
+
+  while (Date.now() - start < timeoutMs) {
+    try {
+      const { subject, body, link } = await getLatestEmailDetails(request);
+
+      if (subject.includes(expectedSubject) && link) {
+        console.log("✅ Reset email subject:", subject);
+        console.log("✅ Reset link:", link);
+        return link;
+      }
+    } catch (err) {
+      if (!err.message.includes("No emails found")) throw err;
+    }
+
+    await new Promise(r => setTimeout(r, intervalMs));
+  }
+
+  throw new Error(`Password Reset Request "${expectedSubject}" not received within ${timeoutMs / 3000}s`);
+}
+

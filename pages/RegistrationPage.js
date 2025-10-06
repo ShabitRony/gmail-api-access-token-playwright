@@ -1,4 +1,3 @@
-import { generateRandomUser } from "../utils/generateRandomUser";
 class RegistrationPage{
 
     constructor(page) {

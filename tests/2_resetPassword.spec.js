@@ -1,29 +1,27 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { ResetPasswordPage } from "../pages/ResetPasswordPage";
-import { getLatestEmailDetails } from "../utils/gmailUtils";
+import { getResetPasswordLink } from "../utils/gmailUtils";
 import { getLatestUser, updateLatestUserPassword } from "../utils/userUtils";
+import { config } from "../config/testConfig";
 
 test("Reset Password", async ({ page, request }) => {
-    await page.goto(process.env.BASE_URL);
+  await page.goto(process.env.BASE_URL);
 
-    const user = getLatestUser();
-    const resetPage = new ResetPasswordPage(page);
-    await resetPage.requestReset(user.email);
+  const user = getLatestUser();
+  const resetPage = new ResetPasswordPage(page);
 
-    await page.waitForTimeout(30000); // Optional: replace with wait for email logic
+  // Step 1: request password reset
+  await resetPage.requestReset(user.email);
 
-     const { link: resetLink, subject } = await getLatestEmailDetails(request);
-  console.log("Reset Email Subject:", subject);
-  console.log("Reset Link:", resetLink);
+  // Step 2: fetch reset link from email
+  const resetLink = await getResetPasswordLink(request, config.resetPasswordSubject);
 
-  if (!resetLink) throw new Error("Reset link not found in email");
-
+  // Step 3: reset password
   await page.goto(resetLink);
-
   const newPassword = "12345";
   await resetPage.setNewPassword(newPassword);
 
+  // Step 4: update user data
   updateLatestUserPassword(newPassword);
-  console.log("Password updated for user:", user.email);
+  
 });
-
