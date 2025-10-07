@@ -66,11 +66,11 @@ A valid OAuth 2.0 token generated from Google OAuth Playground
 
 - Create a .env file in the project root and add:
 
-```GMAIL_API_URL=https://gmail.googleapis.com/gmail/v1/users/me/messages```
+```Gmail_URL=https://gmail.googleapis.com/gmail/v1/users/me/messages```
 
 ```GMAIL_API_TOKEN=<your-oauth2-token>```
 
-```APP_BASE_URL=<your-application-url>```
+```BASE_URL=<your-application-url>```
 
 ```DELETE_USER_API=<delete-user-api-endpoint>```
 
