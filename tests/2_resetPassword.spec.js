@@ -1,27 +1,12 @@
 import { test } from "@playwright/test";
 import { ResetPasswordPage } from "../pages/ResetPasswordPage";
-import { getResetPasswordLink } from "../utils/gmailUtils";
-import { getLatestUser, updateLatestUserPassword } from "../utils/userUtils";
-import { config } from "../config/testConfig";
+import DeleteUserPage from "../pages/DeleteUserPage";
 
-test("Reset Password", async ({ page, request }) => {
-  await page.goto(process.env.BASE_URL);
+test("Reset Password Flow with Cleanup", async ({ page, request }) => {
+    const resetPage = new ResetPasswordPage(page, request);
 
-  const user = getLatestUser();
-  const resetPage = new ResetPasswordPage(page);
+    // Reset password and get latest user
+     await resetPage.resetLatestUserPassword();
 
-  // Step 1: request password reset
-  await resetPage.requestReset(user.email);
-
-  // Step 2: fetch reset link from email
-  const resetLink = await getResetPasswordLink(request, config.resetPasswordSubject);
-
-  // Step 3: reset password
-  await page.goto(resetLink);
-  const newPassword = "12345";
-  await resetPage.setNewPassword(newPassword);
-
-  // Step 4: update user data
-  updateLatestUserPassword(newPassword);
   
 });

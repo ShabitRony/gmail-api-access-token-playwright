@@ -1,4 +1,4 @@
-import { registerAndCapture, extractUserInfo, saveUserModel } from "../utils/registrationHelper.js";
+import { registerAndCapture, extractUserInfo, saveUserModel } from "../pages/RegistrationPage.js";
 import { waitForToast } from "../utils/toastUtils.js";
 import { config } from "../config/testConfig.js";
 import { assertLatestEmailSubject } from "../utils/gmailUtils.js";

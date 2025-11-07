@@ -17,7 +17,10 @@
     "@faker-js/faker": "^9.8.0",
     "dotenv": "^16.6.1",
     "fs": "^0.0.1-security",
-    "mailparser": "^3.7.4",
+    "googleapis": "^165.0.0",
+    "imap": "^0.8.19",
+    "jsdom": "^27.1.0",
+    "mailparser": "^3.9.0",
     "node-imap": "^0.9.6"
   }
 }
