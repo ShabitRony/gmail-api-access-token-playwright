@@ -6,7 +6,7 @@ export function generateRandomUser() {
   return {
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    email: `shabitalahi123+regtest${Date.now()}@gmail.com`,
+    email: `shabitalahi123+${generateRandomId(100,999)}@gmail.com`,
     password: "12345",
     phoneNumber: `014${generateRandomId(10000000, 99999999)}`,
     address: faker.location.city()

@@ -70,6 +70,8 @@ class AdminLoginPage {
     fs.writeFileSync(envPath, envContent, "utf-8");
     console.log("✅ Token saved to .env file");
 
+    
+
     return { url, method, status, token };
   }
 }

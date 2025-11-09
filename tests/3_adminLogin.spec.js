@@ -1,6 +1,6 @@
 // tests/adminLogin.spec.js
 import { test, expect } from "@playwright/test";
-import AdminLoginPage from "../pages/adminLoginPage.js";
+import AdminLoginPage from "../pages/AdminLoginpage.js";
 import dotenv from "dotenv";
 
 dotenv.config();
