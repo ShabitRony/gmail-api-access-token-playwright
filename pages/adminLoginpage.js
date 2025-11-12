@@ -1,4 +1,5 @@
 // pages/adminLoginPage.js
+import { log } from "console";
 import fs from "fs";
 import path from "path";
 
@@ -16,8 +17,10 @@ class AdminLoginPage {
    * @param {string} email
    * @param {string} password
    */
-  async adminLogin(email, password) {
+  async adminLogin() {
     // Intercept the login request
+    const email = process.env.Admin_Email;
+    const password = process.env.Admin_Pass;
     const loginPromise = this.page.waitForResponse(
       (resp) =>
         resp.url().includes("/api/auth/login") &&
@@ -37,6 +40,14 @@ class AdminLoginPage {
     const status = response.status();
     const url = req.url();
     const method = req.method();
+    
+    //Assertions
+    
+    console.log("Status Code",status);
+    console.log("URL",url);
+    console.log("Method",method);
+    
+    
 
     if (url !== "https://dailyfinanceapi.roadtocareer.net/api/auth/login") {
       throw new Error(`Unexpected request URL: ${url}`);
@@ -51,6 +62,7 @@ class AdminLoginPage {
     // Extract token from response JSON
     const data = await response.json();
     const token = data.token;
+    log("Token:", token);
     if (!token) throw new Error("Token not found in login response");
 
     // Save token in .env file
@@ -70,9 +82,10 @@ class AdminLoginPage {
     fs.writeFileSync(envPath, envContent, "utf-8");
     console.log("✅ Token saved to .env file");
 
-    
 
     return { url, method, status, token };
+   
+    
   }
 }
 

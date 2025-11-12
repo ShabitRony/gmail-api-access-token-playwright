@@ -19,6 +19,7 @@
     "fs": "^0.0.1-security",
     "googleapis": "^165.0.0",
     "imap": "^0.8.19",
+    "imap-simple": "^5.1.0",
     "jsdom": "^27.1.0",
     "mailparser": "^3.9.0",
     "node-imap": "^0.9.6"

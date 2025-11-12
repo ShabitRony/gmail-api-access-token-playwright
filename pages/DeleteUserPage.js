@@ -14,6 +14,8 @@ export default class DeleteUserPage {
 
   async deleteUserById(userId) {
   const deleteUrl = `${this.baseUrl}/${userId}`;
+  console.log("Delete API",deleteUrl);
+  
   console.log(`Deleting user: ${userId}`);
 
   const res = await this.request.delete(deleteUrl, {
@@ -21,16 +23,16 @@ export default class DeleteUserPage {
   });
 
   // --- Assert request details (you already control them) ---
-  console.log(`📡 Request method: DELETE`);
+  console.log(`✅ Request method: DELETE`);
   expect("DELETE").toBe("DELETE"); 
   
   // --- Assert response details ---
   const status = res.status();
-  console.log(`📡 Status code: ${status}`);
+  console.log(`✅ Status code: ${status}`);
   expect(status, `Expected HTTP 200 but got ${status}`).toBe(200);
 
   // -- Requested URL ---
-   console.log(`📡 Request URL: ${deleteUrl}`);
+   console.log(`✅ Request URL: ${deleteUrl}`);
   expect(deleteUrl).toBe(deleteUrl); 
 
   // -- Response URL ---

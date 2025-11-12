@@ -66,7 +66,7 @@ A valid OAuth 2.0 token generated from Google OAuth Playground
 
 - Create a .env file in the project root and add:
 
-```Gmail_URL=https://gmail.googleapis.com/gmail/v1/users/me/messages```
+```Gmail_URL=https://gmail.googleapis.com/gmail/v1/users/me/messages/```
 
 ```GMAIL_API_TOKEN=<your-oauth2-token>```
 
@@ -88,9 +88,10 @@ GMAIL-API-TOKEN-ACCESS/
 │
 
 │── 📂 tests                  # Test cases (spec files)
-│   ├── registration.spec.js
-│   ├── resetPassword.spec.js
-│   └── deleteUser.spec.js
+│   ├── 1_registration.spec.js
+│   ├── 2_resetPassword.spec.js
+│   └── 3_adminLogin.spec.js
+│   └── 4_deleteUser.spec.js
 │
 
 │── 📂 utils                  # Utility/helper functions
@@ -98,8 +99,7 @@ GMAIL-API-TOKEN-ACCESS/
 │   ├── userUtils.js
 │   ├── toastUtils.js
 │   ├── generateRandomUser.js
-│   └── registrationHelper.js
-│
+│   
 
 └── userData.json             # Store Test data
 

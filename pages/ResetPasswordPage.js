@@ -27,7 +27,7 @@ class ResetPasswordPage {
     }
 
     async resetLatestUserPassword() {
-        const user = getLatestUser();   // make sure this includes `id`
+        const user = getLatestUser();  
         await this.page.goto(process.env.BASE_URL);
 
         // Request reset
@@ -46,7 +46,7 @@ class ResetPasswordPage {
         // Update user data
         updateLatestUserPassword(newPassword);
 
-        return user; // ✅ return user object including id for deletion
+        return user; 
     }
 }
 
