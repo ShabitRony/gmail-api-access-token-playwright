@@ -134,30 +134,26 @@ Step-by-step (desktop / web browser):
 ## 📂 Fonlder Structure
 GMAIL-API-TOKEN-ACCESS/
 
-│── 📂 flow                   # High-level test flows
-│   └── registrationFlow.js
-│
-
-│── 📂 pages                  # Page Object classes
-│   ├── RegistrationPage.js
-│   ├── ResetPasswordPage.js
-│   └── DeleteUserPage.js
-│
-
-│── 📂 tests                  # Test cases (spec files)
-│   ├── 1_registration.spec.js
-│   ├── 2_resetPassword.spec.js
-│   └── 3_deleteUser.spec.js
-│
-
-│── 📂 utils                  # Utility/helper functions
-│   ├── gmailUtils.js
-│   ├── userUtils.js
-│   ├── toastUtils.js
-│   ├── generateRandomUser.js
-│   
-
-└── userData.json             # Store Test data
+    │── 📂 flow                   # High-level test flows
+    │   └── registrationFlow.js
+    │
+    │── 📂 pages                  # Page Object classes
+    │   ├── RegistrationPage.js
+    │   ├── ResetPasswordPage.js
+    │   └── DeleteUserPage.js
+    │
+    │── 📂 tests                  # Test cases (spec files)
+    │   ├── 1_registration.spec.js
+    │   ├── 2_resetPassword.spec.js
+    │   └── 3_deleteUser.spec.js
+    │
+    │── 📂 utils                  # Utility/helper functions
+    │   ├── gmailUtils.js
+    │   ├── userUtils.js
+    │   ├── toastUtils.js
+    │   ├── generateRandomUser.js
+    │   
+    └── userData.json             # Store Test data
 
 
 ## 🛠️ Tech Stack
