@@ -129,7 +129,7 @@ Step-by-step (desktop / web browser):
  `GMAIL_APP_PASSWORD=abcd efgh ijkl mnop`
 
 # Configure Environment Variables
- 
+ ## .env file setup
 
  ``` GMAIL_API_TOKEN=<Your_Oauth_Gmail_API_Token>```
 
@@ -143,9 +143,11 @@ Step-by-step (desktop / web browser):
 
 
 ```Admin_Email= <Admin_email>```
+
 ```Admin_Pass= <Admin_pass>```
 
 ```GMAIL_EMAIL=<Your_Gmail>```
+
 ```GMAIL_APP_PASSWORD=<Gmail_APP_Password>```
 
 
