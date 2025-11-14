@@ -1,9 +1,9 @@
-import { getResetPasswordLink } from "../utils/gmailUtils";
+import { getResetPasswordLink,getResetPasswordLinkUnified } from "../utils/gmailUtils";
 import { getLatestUser, updateLatestUserPassword } from "../utils/userUtils";
 import { config } from "../config/testConfig";
 
 class ResetPasswordPage {
-    constructor(page, request) {
+    constructor(page,request) {
         this.page = page;
         this.request = request;
         this.resetPasswordLink = page.getByRole("link", { name: "Reset it here" });
@@ -34,7 +34,13 @@ class ResetPasswordPage {
         await this.requestReset(user.email);
 
         // Get reset link from email
-        const resetLink = await getResetPasswordLink(this.request, config.resetPasswordSubject);
+        // const resetLink = await getResetPasswordLinkUnified(this.request, config.resetPasswordSubject);
+        const resetLink = await getResetPasswordLinkUnified({
+      method: "APP_PASSWORD",
+      request: this.request,
+      expectedSubject: config.resetPasswordSubject,
+    });
+
 
         // Define new password
         const newPassword = "12345";

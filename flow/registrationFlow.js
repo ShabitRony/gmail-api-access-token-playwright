@@ -1,7 +1,7 @@
 import { registerAndCapture, extractUserInfo, saveUserModel } from "../pages/RegistrationPage.js";
 import { waitForToast } from "../utils/toastUtils.js";
 import { config } from "../config/testConfig.js";
-import { assertLatestEmailSubject } from "../utils/gmailUtils1.js";
+import { waitForEmailSubjectUnified } from "../utils/gmailUtils.js";
 import { json } from "stream/consumers";
 
 export async function registerUserFlow(page, userModel) {
@@ -24,5 +24,15 @@ export async function registerUserFlow(page, userModel) {
  */
 export async function verifyRegistrationEmail(request) {
   // await assertLatestEmailSubject(request, config.emailSubject);
-  assertLatestEmailSubject(request, "Password Reset Request", "appPassword"); 
+  
+
+const details = await waitForEmailSubjectUnified({
+  method: "APP_PASSWORD",          // or "API" / "OAUTH"
+  request,                         // only for method: "API"
+  expectedSubject: config.emailSubject, // adjust as needed
+});
+
+// console.log(details.subject);
+// console.log(details.body);
+
 }
