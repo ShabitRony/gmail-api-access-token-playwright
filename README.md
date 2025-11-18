@@ -1,6 +1,6 @@
 # 📌 Project Highlights
 
-## In this automation flow, a user completes the registration process, continues through the remaining user flows with Integrated Gmail Authentication Support via OAuth 2.0 Playground, App Password and finally we call a Delete API to remove the user in order to keep the database clean.
+## In this automation flow, I implemented user registration, email verification, and password reset processes with integrated Gmail authentication support using OAuth 2.0 Playground and App Password. The workflow also includes a Delete API call at the end to remove the test user and keep the database clean.
 
 - In the Gmail utility, we have implemented three methods to support different authentication approaches: OAuth 2.0 Playground (gmail_api_token), Gmail App Password, and Client ID / Client Secret.
 
@@ -164,24 +164,26 @@ Step-by-step (desktop / web browser):
 # Configure Environment Variables
  ## .env file setup
 
- ``` GMAIL_API_TOKEN=<Your_Oauth_Gmail_API_Token>```
-
-```BASE_URL=<Your_Website_URL>```
-
-```ADMIN_TOKEN=<Admin Token (While deleting user by calling api admin_token required)>```
-
-```Delete_URL=<Delete_API>```
-
-```Gmail_URL=https://gmail.googleapis.com/gmail/v1/users/me/messages/```
-
-
-```Admin_Email= <Admin_email>```
-
-```Admin_Pass= <Admin_pass>```
-
-```GMAIL_EMAIL=<Your_Gmail>```
-
-```GMAIL_APP_PASSWORD=<Gmail_APP_Password>```
+ ```
+     GMAIL_API_TOKEN=<Your_Oauth_Gmail_API_Token>
+    
+    BASE_URL=<Your_Website_URL>
+    
+    ADMIN_TOKEN=<Admin Token (While deleting user by calling api admin_token required)>
+    
+    Delete_URL=<Delete_API>
+    
+    Gmail_URL=https://gmail.googleapis.com/gmail/v1/users/me/messages/
+    
+    
+    Admin_Email= <Admin_email>
+    
+    Admin_Pass= <Admin_pass>
+    
+    GMAIL_EMAIL=<Your_Gmail>
+    
+    GMAIL_APP_PASSWORD=<Gmail_APP_Password>
+```
 
 
 ## 📂 Fonlder Structure
