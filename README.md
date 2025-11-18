@@ -1,6 +1,6 @@
 # 📌 Project Highlights
 
-## In this automation flow, a user completes the registration process, continues through the remaining user flows, and finally we call a Delete API to remove the user in order to keep the database clean.
+## In this automation flow, a user completes the registration process, continues through the remaining user flows with Integrated Gmail Authentication Support via OAuth 2.0 Playground, App Password and finally we call a Delete API to remove the user in order to keep the database clean.
 
 - In the Gmail utility, we have implemented three methods to support different authentication approaches: OAuth 2.0 Playground (gmail_api_token), Gmail App Password, and Client ID / Client Secret.
 
