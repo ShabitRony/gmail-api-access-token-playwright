@@ -128,6 +128,39 @@ Step-by-step (desktop / web browser):
 
  `GMAIL_APP_PASSWORD=abcd efgh ijkl mnop`
 
+  # 📘 Example: How to Use Gmail Utility Methods in Your Test Files
+
+ ### Below are sample calls showing how to fetch OTP and LINKS from email using both OAuth Gmail API and App Password, as well as how to extract reset password links.
+
+```
+    // API method 
+    const result = await getLatestEmailDetailsUnified({
+      method: "API",
+      request,
+    });
+    
+    // App Password
+    const result = await getLatestEmailDetailsUnified({
+      method: "APP_PASSWORD",
+    });
+```
+### Below are sample for omit the subject and body if the email.
+```
+    // App password
+    const email = await getLatestEmailDetailsUnified({
+      method: "APP_PASSWORD",
+      request: apiRequestContext,
+      expectedSubject: "Email Subject"
+    });
+
+    // API (Playwright test)
+    const link = await getResetPasswordLinkUnified({
+      method: "API",
+      request: apiRequestContext,
+      expectedSubject: "Reset your password",
+    });
+```        
+
 # Configure Environment Variables
  ## .env file setup
 
@@ -149,7 +182,6 @@ Step-by-step (desktop / web browser):
 ```GMAIL_EMAIL=<Your_Gmail>```
 
 ```GMAIL_APP_PASSWORD=<Gmail_APP_Password>```
-
 
 
 ## 📂 Fonlder Structure
