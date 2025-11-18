@@ -1,22 +1,23 @@
-import { registerAndCapture, extractUserInfo, saveUserModel } from "../pages/RegistrationPage.js";
+import RegistrationPage from "../pages/RegistrationPage.js";
 import { waitForToast } from "../utils/toastUtils.js";
 import { config } from "../config/testConfig.js";
 import { waitForEmailSubjectUnified } from "../utils/gmailUtils.js";
-import { json } from "stream/consumers";
 
 export async function registerUserFlow(page, userModel) {
+  const regPage = new RegistrationPage(page);
+
   // Register and capture backend response
-  const { response, data } = await registerAndCapture(page, userModel);
+  const { response, data } = await regPage.registerAndCapture(userModel);
 
   // Wait for success toast
   await waitForToast(page);
 
   // Extract userId from response
-  const { userId } = await extractUserInfo(page, data, response);
+  const { userId } = await regPage.extractUserInfo(data);
 
   // Save  userId into JSON
   userModel.userId = userId;
-  saveUserModel(userModel);
+  regPage.saveUserModel(userModel);
 }
 
 /**
@@ -27,7 +28,7 @@ export async function verifyRegistrationEmail(request) {
   
 
 const details = await waitForEmailSubjectUnified({
-  method: "APP_PASSWORD",          // or "API" / "OAUTH"
+  method: "API",          //  "API" or "APP_PASSWORD"
   request,                         // only for method: "API"
   expectedSubject: config.emailSubject, // adjust as needed
 });

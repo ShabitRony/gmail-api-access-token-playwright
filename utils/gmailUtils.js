@@ -11,6 +11,7 @@ dotenv.config();
 
 const TOKEN_PATH = path.join(process.cwd(), "token.json");
 
+
 // ---------- helpers ----------
 function extractOtp(text) {
   if (!text) return null;
@@ -145,34 +146,34 @@ async function fetchEmailUsingAppPassword() {
   });
 }
 
-// ---------- METHOD 3: OAuth Client (googleapis) ----------
-const oAuth2Client = new google.auth.OAuth2(
-  process.env.GMAIL_CLIENT_ID,
-  process.env.GMAIL_CLIENT_SECRET,
-  process.env.GMAIL_REDIRECT_URI
-);
+// // ---------- METHOD 3: OAuth Client (googleapis) ----------
+// const oAuth2Client = new google.auth.OAuth2(
+//   process.env.GMAIL_CLIENT_ID,
+//   process.env.GMAIL_CLIENT_SECRET,
+//   process.env.GMAIL_REDIRECT_URI
+// );
 
-async function authorize() {
-  if (fs.existsSync(TOKEN_PATH)) {
-    const token = JSON.parse(fs.readFileSync(TOKEN_PATH));
-    oAuth2Client.setCredentials(token);
-    oAuth2Client.on("tokens", (tokens) => {
-      if (tokens.refresh_token) {
-        fs.writeFileSync(TOKEN_PATH, JSON.stringify(tokens));
-      }
-    });
-    return oAuth2Client;
-  }
+// async function authorize() {
+//   if (fs.existsSync(TOKEN_PATH)) {
+//     const token = JSON.parse(fs.readFileSync(TOKEN_PATH));
+//     oAuth2Client.setCredentials(token);
+//     oAuth2Client.on("tokens", (tokens) => {
+//       if (tokens.refresh_token) {
+//         fs.writeFileSync(TOKEN_PATH, JSON.stringify(tokens));
+//       }
+//     });
+//     return oAuth2Client;
+//   }
 
-  const authUrl = oAuth2Client.generateAuthUrl({
-    access_type: "offline",
-    scope: ["https://www.googleapis.com/auth/gmail.readonly"],
-  });
+//   const authUrl = oAuth2Client.generateAuthUrl({
+//     access_type: "offline",
+//     scope: ["https://www.googleapis.com/auth/gmail.readonly"],
+//   });
 
-  throw new Error(
-    `No token found. Authorize the app first:\n${authUrl}\nThen call saveToken(code).`
-  );
-}
+//   throw new Error(
+//     `No token found. Authorize the app first:\n${authUrl}\nThen call saveToken(code).`
+//   );
+// }
 
 export async function saveToken(code) {
   const { tokens } = await oAuth2Client.getToken(code);

@@ -131,6 +131,26 @@ Step-by-step (desktop / web browser):
  - Configure Environment Variables
 
 
+ # e.g. Configure .env file
+
+ ``` GMAIL_API_TOKEN=<Your_Oauth_Gmail_API_Token>```
+
+```BASE_URL=<Your_Website_URL>```
+
+```ADMIN_TOKEN=<Admin Token (While deleting user by calling api admin_token required)>```
+
+```Delete_URL=<Delete_API>```
+
+````Gmail_URL=https://gmail.googleapis.com/gmail/v1/users/me/messages/```
+
+
+```Admin_Email= <Admin_email>```
+```Admin_Pass= <Admin_pass>```
+
+```GMAIL_EMAIL=<Your_Gmail>```
+```GMAIL_APP_PASSWORD=<Gmail_APP_Password>```
+
+
 ## 📂 Fonlder Structure
 GMAIL-API-TOKEN-ACCESS/
 
@@ -156,7 +176,6 @@ GMAIL-API-TOKEN-ACCESS/
 │   ├── toastUtils.js
 │   ├── generateRandomUser.js
 │   
-
 └── userData.json             # Store Test data
 
 

@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker";
 // import { generateRandomId } from "./randomNumber.js";
-import {RegistrationPage} from "../pages/RegistrationPage.js";
 
 export function generateRandomUser() {
   return {
